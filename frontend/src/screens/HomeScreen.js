@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import Product from '../components/Product'
-
+import AddWord from '../components/AddWord'
 import axios from 'axios'
+import '../App.css';
 
 function HomeScreen() {
-    const [products, setProducts] = useState([])
+    const [words, setWords] = useState([])
     useEffect(() => {
-        async function fetchProducts() {
-            const {data} = await axios.get('/api/products/')
-            setProducts(data)
+        async function fetchWords() {
+            const {data} = await axios.get('/api/words/')
+            setWords(data)
         }
-        fetchProducts()
+        fetchWords()
     }, [])
 
     return (
-        <div>
-            <h1>Latest Products</h1>
-            <Row>
-                {products.map(product => (
-                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                        <Product product={product} />
-                    </Col>
-                ))}
-            </Row>
+        <div className="main">
+            <h2 className="main-header">@React Add-Word</h2>
+            <div>
+                <AddWord/>
+            </div>
         </div>
     )
 }
