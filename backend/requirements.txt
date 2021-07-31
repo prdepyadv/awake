@@ -15,6 +15,7 @@ goslate==1.5.1
 gunicorn==20.1.0
 idna==2.10
 Pillow==8.2.0
+psycopg2-binary==2.9.1
 pycodestyle==2.7.0
 PyDictionary==2.0.1
 python-decouple==3.4
