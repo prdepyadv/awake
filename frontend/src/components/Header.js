@@ -15,7 +15,7 @@ function Header() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <LinkContainer to='/login'>
-                                <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                <Nav.Link><i className="fas fa-user"></i>&nbsp;&nbsp;Login</Nav.Link>
                             </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>

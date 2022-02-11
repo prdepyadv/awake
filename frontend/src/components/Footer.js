@@ -6,7 +6,7 @@ function Footer() {
         <Container>
             <Row>
                 <Col className="text-center py-3">
-                    Copyright &copy; Awake
+                    Copyright &copy; Awake 2021-22
                 </Col>
             </Row>
         </Container>
