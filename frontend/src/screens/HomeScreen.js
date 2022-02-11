@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col } from 'react-bootstrap'
 import AddWord from '../components/AddWord'
 import axios from 'axios'
 import '../App.css';
@@ -10,6 +9,7 @@ function HomeScreen() {
         async function fetchWords() {
             const {data} = await axios.get('/api/words/')
             setWords(data)
+            console.log(data);
         }
         fetchWords()
     }, [])
@@ -18,7 +18,7 @@ function HomeScreen() {
         <div className="main">
             <h2 className="main-header">@React Add-Word</h2>
             <div>
-                <AddWord/>
+                <AddWord words={words} />
             </div>
         </div>
     )
