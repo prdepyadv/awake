@@ -47,7 +47,7 @@ export default class ShowWords extends Component {
             <div className="words">
                 <div className="wordsTitle"><b>Words List</b></div>
                 <input type='text' id='searchWord'
-                className='word searchWord'
+                className='searchWord'
                 placeholder='Search any word' onChange={(e) => {
                     this.filterWords();
                 }}

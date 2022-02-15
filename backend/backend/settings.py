@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False if config('Debug') == 'False' or not config('Debug') else True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'aawake.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'aawake.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'ask_me.apps.AskMeConfig',
     'base.apps.BaseConfig',
     'rest_framework',
     'corsheaders',

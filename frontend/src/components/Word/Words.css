@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.main-header {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.create-form label {
+    color: black !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px !important;
+}
+
+.wordsPanel {
+    display: flex;
+}
+
+.addWordDiv {
+    flex: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: whitesmoke;
+    flex-direction: column;
+}
+
+.showWordsDiv {
+    flex: 30% 1;
+    display: flex;
+    height: min-content;
+    max-height: 80vh;
+    overflow-y: scroll;
+    border-radius: 20px;
+}
+
+.words {
+    width: 100%;
+}
+
+.wordsTitle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: bisque;
+}
+
+.word {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: cornsilk;
+    border: 0.5px solid bisque;
+    border-radius: 5px;
+    margin: 1px 0 1px 0;
+    cursor: pointer;
+}
+
+.word:hover {
+    background-color: bisque;
+}
+
+.searchWord {
+    width: 100%;
+    border: 0.5px solid bisque;
+    background-color: white;
+    cursor: text;
+}
+
+.searchWord:hover {
+    background-color: white;
+}

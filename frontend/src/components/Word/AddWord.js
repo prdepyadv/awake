@@ -1,24 +1,27 @@
 import React, { Component } from 'react'
 import { Button, Checkbox, Form, Message } from 'semantic-ui-react'
 import axios from 'axios';
-import ShowWords from '../components/ShowWords'
-import '../App.css';
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 
-export default class Words extends Component {
+export default class AddWord extends Component {
     constructor(props){
         super(props);
         this.state = {
             wordName: '', checkbox: false, 
             duplicateWordError: false, error: true,
-            success: false, words: []
+            success: false,
+            words: {words: this.props && this.props.words && 
+            this.props.words.length ? this.props.words : []}
         };
     }
 
-    componentDidMount() {
-        this.fetchWords();
-    }
-    componentWillUnmount() {
-        console.log('Unmounting');
+    componentDidUpdate(prevProps) {
+        if (prevProps.words !== this.props.words) {
+            this.setState({
+                words: this.props && this.props.words && this.props.words.length ? this.props.words : []
+            })
+        }
     }
 
     checkData = () => {
@@ -35,7 +38,7 @@ export default class Words extends Component {
 
         setTimeout(async () => {
             try{
-                this.fetchWords();
+                this.props.syncWords();
                 this.state.words.forEach(element => {
                     if(element.wordName && (element.wordName.toUpperCase() === word.toUpperCase())){
                         console.log('matched word %s', word);
@@ -63,52 +66,25 @@ export default class Words extends Component {
         } else if(!this.state.checkbox) {
             alert('Please accept Terms & Conditions first');
             return false;
-        }
-        this.state.words.forEach((data) => {
-            if(wordName.toUpperCase() === data.wordName.toUpperCase()){
-                this.setState({
-                    duplicateWordError: true
-                })
-                return false;
-            }
-        })  
+        } 
 
-        axios.post('/api/words/', {
+        
+        axios.post('/api/vocab/words/', {
             wordName
         }).then((response) => {
-            let dat = response.data;
+            this.props.updateWords(response.data);
             this.setState({
-                wordName: '', checkbox: false, success: true,
-                words: [...this.state.words, dat]
-            })
+                wordName: '', checkbox: false, success: true
+            });
             setTimeout(() => {
                this.setState({success: false});
             }, 3000)
         })
     }
 
-    async fetchWords() {
-        try{
-            const {data} = await axios.get('/api/words/')
-            this.setState({
-                words: data
-            });
-            return true;
-        } catch (error){
-            console.log(error);
-            return false;
-        }
-    }
-
     render() {
     return (
-    <div className='wordsPanel'>
-        <div className='showWordsDiv'>
-            <ShowWords words={this.state.words}/>   
-        </div>
-        <div className='addWordDiv'>
-            <h2 className="main-header">@React Add-Word</h2>
-            <div>
+        <div>
             <Form className="create-form" onSubmit={this.postData}
             error={this.state.duplicateWordError}
             success={this.state.success}>
@@ -140,9 +116,7 @@ export default class Words extends Component {
 
                 <Message success icon='thumbs up' header='Nice job!' content='Keyword saved.'/>
             </Form>
-            </div>
         </div>
-    </div>
     )
     }
 }
