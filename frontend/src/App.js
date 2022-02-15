@@ -18,14 +18,6 @@ function App(props) {
   const { token, setToken } = useToken();
   const history = useHistory();
 
-  function checkToken() {
-    console.log('checking token in App.js');
-    if(token){
-      return true;
-    }
-    return false;
-  }
-
   function clearSession() {
     console.log('clearing session in App.js');
     sessionStorage.clear();
@@ -48,7 +40,7 @@ function App(props) {
       <Header token={token} />
       <main className="py-3">
         {
-          checkToken() ? 
+          token ? 
           (
             <Container>
             <Route path='/' component={HomeScreen} exact />
